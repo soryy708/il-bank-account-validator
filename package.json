@@ -1,0 +1,31 @@
+{
+  "name": "il-bank-account-validator",
+  "version": "1.0.0",
+  "description": "Israel Bank Account Validator for sanity checking if an account number is valid for a particular Israeli bank and branch. Can be used to present appropriate UI to your users as they type.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "israel",
+    "israeli",
+    "bank",
+    "account",
+    "validation",
+    "validator",
+    "snif",
+    "heshbon"
+  ],
+  "author": "Ivan Rubinson",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soryy708/il-bank-account-validator"
+  }
+}

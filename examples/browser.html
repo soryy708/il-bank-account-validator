@@ -1,0 +1,93 @@
+<!doctype HTML>
+<html>
+    <head>
+		<meta charset="utf-8"/>
+        <title>il-bank-account-validator</title>
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+                font-family: sans-serif;
+            }
+
+            form {
+                max-width: 1000px;
+                font-size: 32px;
+                text-align: right;
+                margin: auto;
+                margin-top: 64px;
+            }
+
+            input {
+                display: block;
+                width: 100%;
+                font-size: 42px;
+                padding: 16px;
+                border-radius: 8px;
+                border: 1px solid lightgrey;
+                box-sizing: border-box;
+            }
+
+            input[type=submit] {
+                margin-top: 32px;
+                width: 100%;
+                background-color: rgb(112, 241, 87);
+                color: darkgreen;
+            }
+
+            h1 {
+                text-align: center;
+                font-size: 64px;
+                padding: 16px;
+                margin: 0;
+                display: none;
+            }
+
+            .valid {
+                color: rgb(45, 141, 20);
+            }
+
+            .invalid {
+                color: rgb(247, 67, 67);
+            }
+        </style>
+    </head>
+    <body dir="rtl">
+        <form onsubmit="return validateForm()">
+            <label for="bankn">מספר בנק</label>
+            <input type="number" id="bankn"/>
+            <label for="branchn">סניף בנק</label>
+            <input type="number" id="branchn"/>
+            <label for="accn">חשבון בנק</label>
+            <input type="number" id="accn"/>
+
+            <input type="submit" value="בדוק"/>
+        </form>
+
+        <h1 id="validationResult"></h1>
+
+        <script src="../il-bank-account-validator.js"></script>
+        <script>
+            function validateForm() {
+                var banknElem = document.getElementById('bankn');
+                var branchnElem = document.getElementById('branchn');
+                var accnElem  = document.getElementById('accn');
+                var outputElem = document.getElementById('validationResult');
+                
+                var isValid = bankAccountValidation(banknElem.value, branchnElem.value, accnElem.value);
+                
+                outputElem.style.display = "block";
+                if(isValid) {
+                    outputElem.innerHTML = "תקין";
+                    outputElem.classList = "valid";
+
+                } else {
+                    outputElem.innerHTML = "שגוי";
+                    outputElem.classList = "invalid";
+                }
+
+                return false;
+            }
+        </script>
+    </body>
+</html>
