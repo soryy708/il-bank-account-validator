@@ -1,3 +1,44 @@
+/* Unsupported and legacy banks:
+ * ?? - Pepper Pay
+ * 1 - Euro Trade
+ * 2 - Poalei Agudat Israel
+ * 6 - Adanim (merged with Mizrahi Tefahot)
+ * 7 - Bank Lepituah Ataasiya
+ * 8 - Poalim / Asfanot
+ * 19 - Bank Ahaklaut Leisrael
+ * 23 - HSBC
+ * 24 - Poalim
+ * 25 - BNP Paribas
+ * 26 - Yobank (merged with 31)
+ * 27 - Barclays Bank PLC​
+ * 28 - Poalim
+ * 30 - Bank Lemishar
+ * 33 - Discount
+ * 37 - Of Jordan
+ * 38 - Commercial Bank of Palestine
+ * 39 - SBI State Bank of India
+ * 43 - Jordan National Bank PLC Aman
+ * 48 - Otsar Ahayal / Aoved Aleumi
+ * 49 - Arav Bank
+ * 50 - Bank Clearing Center
+ * 59 - Automatic Bank Services
+ * 65 - Hasah Kupot Hisahon Lehinuh
+ * 66 - Kahir Aman
+ * 67 - Arab Land
+ * 68 - Bank Dexia 
+ * 71 - Commercial Jordan
+ * 73 - Arav Islamic
+ * 74 - British Bank of Middle East
+ * 76 - Palestine Investments
+ * 77 - Leumi Mashkantaot
+ * 82 - אל-קודס לפיתוח והשקעות
+ * 83 - Union Bank
+ * 84 - האוזינג
+ * 89 - Palestine
+ * 90 - Discount Mashkantaot
+ * 93 - ג'ורדן כווית
+ * 99 - Bank Israel
+ */
 "use strict";
 
 module.exports = function(bankNumber, branchNumber, accountNumber) {
@@ -54,7 +95,7 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
     }
     */
 
-    if(bankNumber === 20) { // Mizrahi Tfahot special case
+    if(bankNumber === 20) { // Mizrahi Tefahot special case
         if(branchNumber > 400) {
             branchNumber -= 400;
         }
@@ -80,9 +121,9 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
     // Account number validation
     var sum = 0;
     switch(bankNumber) {
-        case(10):
-        case(13):
-        case(34):
+        case(10): // Luemi
+        case(13): // Igud
+        case(34): // Aravei Israeli merged with 10
             sum += accountNumberDigits[0] * 2;
             sum += accountNumberDigits[1] * 3;
             sum += accountNumberDigits[2] * 4;
@@ -97,9 +138,9 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
             sum %= 100;
             return sum === 90 || sum === 72 || sum === 70 || sum === 60 || sum === 20;
 
-        case(20):
-        case(4):
-        case(12):
+        case(20): // Mizrahi Tefahot
+        case(4): // Yahav (ovdey medina)
+        case(12): // Hapoalim
             sum += accountNumberDigits[0] * 1;
             sum += accountNumberDigits[1] * 2;
             sum += accountNumberDigits[2] * 3;
@@ -110,21 +151,21 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
             sum += branchNumberDigits[1] * 8;
             sum += branchNumberDigits[2] * 9;
             sum %= 11;
-            if(bankNumber === 4) {
+            if(bankNumber === 4) { // Yahav (ovdey medina)
                 return sum === 0 || sum === 2;
             }
-            if(bankNumber === 12) {
+            if(bankNumber === 12) { // Hapoalim
                 return sum === 0 || sum === 2 || sum === 4 || sum === 6;
             }
-            if(bankNumber === 20) {
+            if(bankNumber === 20) { // Mizrahi Tefahot
                 return sum === 0 || sum === 2 || sum === 4;
             }
             return false;
 
-        case(11):
-        case(17):
-        case(31):
-        case(52):
+        case(11): // Discount
+        case(17): // Mercantile Discount
+        case(31): // Beinleumi
+        case(52): // Poalei Agudat Israel, merged with 31
             sum += accountNumberDigits[0] * 1;
             sum += accountNumberDigits[1] * 2;
             sum += accountNumberDigits[2] * 3;
@@ -136,10 +177,10 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
             sum += accountNumberDigits[8] * 9;
             sum %= 11;
 
-            if(bankNumber === 11 || bankNumber === 17) {
+            if(bankNumber === 11 || bankNumber === 17) { // Discount or Mercantile
                 return sum === 0 || sum === 2 || sum === 4;
             }
-            if(bankNumber === 31 || bankNumber === 52) {
+            if(bankNumber === 31 || bankNumber === 52) { // Beinleumi
                 if(sum === 0 || sum === 6) {
                     return true;
                 } else {
@@ -156,7 +197,7 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
             }
             return false;
 
-        case(9):
+        case(9): // Post Bank
             sum += accountNumberDigits[0] * 1;
             sum += accountNumberDigits[1] * 2;
             sum += accountNumberDigits[2] * 3;
@@ -169,10 +210,10 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
             sum %= 10;
             return sum === 0;
 
-        case(54):
+        case(54): // Jerusalem
             return true; // wtf?
 
-        case(22):
+        case(22): // Citibank NA
             sum += accountNumberDigits[0] * 2;
             sum += accountNumberDigits[1] * 3;
             sum += accountNumberDigits[2] * 4;
@@ -183,8 +224,8 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
             sum += accountNumberDigits[7] * 3;
             return (11 - sum % 11) === accountNumberDigits[8];
 
-        case(14):
-        case(46):
+        case(14): // Otsar Ahayal
+        case(46): // Masad
             sum += accountNumberDigits[0] * 1;
             sum += accountNumberDigits[1] * 2;
             sum += accountNumberDigits[2] * 3;
@@ -200,7 +241,7 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
                 return true;
             }
 
-            if(bankNumber === 46) {
+            if(bankNumber === 46) { // Masad
                 if(sum === 2) {
                     return branchNumber === 154 || branchNumber === 166 || branchNumber === 178 || branchNumber === 181 || branchNumber === 183 || branchNumber === 191 || branchNumber === 192 || branchNumber === 503 || branchNumber === 505 || branchNumber === 507 || branchNumber === 515 || branchNumber === 516 || branchNumber === 527 || branchNumber === 539
     
@@ -232,7 +273,7 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
                     }
                 }
             }
-            if(bankNumber === 14) {
+            if(bankNumber === 14) { // Otsar Ahayal
                 if((sum === 0 || sum === 2) && (branchNumber === 385 || branchNumber === 384 || branchNumber === 365 || branchNumber === 347 || branchNumber === 363 || branchNumber === 362 || branchNumber === 361)) {
                     return true;
                 } else if(sum === 4 && (branchNumber === 363 || branchNumber === 362 || branchNumber === 361)) {
