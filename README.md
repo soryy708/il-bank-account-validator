@@ -2,6 +2,7 @@ Israeli Bank Account Validator
 =
 
 Israeli Bank Account Validator provides validation utilities for Israeli bank account numbers. You can use it to present appropriate UI to your user as they type.
+This is a JavaScript module.
 
 It can be used both on the front side as a browserified module, and on the back side as a NodeJS module.
 
@@ -48,3 +49,5 @@ In the browser with `<script>` tags:
   }
 </script>
 ```
+
+The file you need is inside the 'build' folder. There's also a minified version.
