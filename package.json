@@ -27,5 +27,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/soryy708/il-bank-account-validator"
-  }
+  },
+  "install": "gulp"
 }
