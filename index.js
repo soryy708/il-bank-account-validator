@@ -124,14 +124,14 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
         case(10): // Luemi
         case(13): // Igud
         case(34): // Aravei Israeli merged with 10
-            sum += accountNumberDigits[0] * 2;
-            sum += accountNumberDigits[1] * 3;
-            sum += accountNumberDigits[2] * 4;
-            sum += accountNumberDigits[3] * 5;
-            sum += accountNumberDigits[4] * 6;
-            sum += accountNumberDigits[5] * 7;
             sum += accountNumberDigits[0];
-            sum += accountNumberDigits[1];
+            sum += accountNumberDigits[1] * 10;
+            sum += accountNumberDigits[2] * 2;
+            sum += accountNumberDigits[3] * 3;
+            sum += accountNumberDigits[4] * 4;
+            sum += accountNumberDigits[5] * 5;
+            sum += accountNumberDigits[6] * 6;
+            sum += accountNumberDigits[7] * 7;
             sum += branchNumberDigits[0] * 8;
             sum += branchNumberDigits[1] * 9;
             sum += branchNumberDigits[2] * 10;
