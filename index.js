@@ -46,19 +46,19 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
     if(bankNumber.constructor === String) {
         bankNumber = Number(bankNumber);
     }
-    if(bankNumber.constructor !== Number || isNaN(bankNumber) || (bankNumber.constructor === Number && bankNumber <= 0 || bankNumber != Math.floor(bankNumber))) {
-        return false;
-    }
     if(branchNumber.constructor === String) {
         branchNumber = Number(branchNumber);
-    }
-    if(branchNumber.constructor !== Number || isNaN(branchNumber) || (branchNumber.constructor === Number && branchNumber <= 0 || branchNumber != Math.floor(branchNumber))) {
-        return false;
     }
     if(accountNumber.constructor === String) {
         accountNumber = Number(accountNumber);
     }
-    if(accountNumber.constructor !== Number || isNaN(accountNumber) || (accountNumber.constructor === Number && accountNumber <= 0 || accountNumber != Math.floor(accountNumber))) {
+    if(bankNumber.constructor !== Number || isNaN(bankNumber) || bankNumber < 0 || bankNumber != Math.floor(bankNumber)) {
+        return false;
+    }
+    if(branchNumber.constructor !== Number || isNaN(branchNumber) || branchNumber < 0 || branchNumber != Math.floor(branchNumber)) {
+        return false;
+    }
+    if(accountNumber.constructor !== Number || isNaN(accountNumber) || accountNumber < 0 || accountNumber != Math.floor(accountNumber)) {
         return false;
     }
 
