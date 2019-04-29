@@ -1,0 +1,77 @@
+[
+    {
+        "bankNumber": "10",
+        "branchNumber": "111",
+        "accountNumber": "11111116"
+    },
+    {
+        "bankNumber": "10",
+        "branchNumber": "111",
+        "accountNumber": "11111118"
+    },
+    {
+        "bankNumber": "10",
+        "branchNumber": "000",
+        "accountNumber": "00000020"
+    },
+    {
+        "bankNumber": "10",
+        "branchNumber": "000",
+        "accountNumber": "00000060"
+    },
+    {
+        "bankNumber": "10",
+        "branchNumber": "000",
+        "accountNumber": "00000090"
+    },
+    {
+        "bankNumber": "13",
+        "branchNumber": "111",
+        "accountNumber": "11111116"
+    },
+    {
+        "bankNumber": "13",
+        "branchNumber": "111",
+        "accountNumber": "11111118"
+    },
+    {
+        "bankNumber": "13",
+        "branchNumber": "000",
+        "accountNumber": "00000020"
+    },
+    {
+        "bankNumber": "13",
+        "branchNumber": "000",
+        "accountNumber": "00000060"
+    },
+    {
+        "bankNumber": "13",
+        "branchNumber": "000",
+        "accountNumber": "00000090"
+    },
+    {
+        "bankNumber": "34",
+        "branchNumber": "111",
+        "accountNumber": "11111116"
+    },
+    {
+        "bankNumber": "34",
+        "branchNumber": "111",
+        "accountNumber": "11111118"
+    },
+    {
+        "bankNumber": "34",
+        "branchNumber": "000",
+        "accountNumber": "00000020"
+    },
+    {
+        "bankNumber": "34",
+        "branchNumber": "000",
+        "accountNumber": "00000060"
+    },
+    {
+        "bankNumber": "34",
+        "branchNumber": "000",
+        "accountNumber": "00000090"
+    }
+]
