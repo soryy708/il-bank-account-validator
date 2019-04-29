@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha ./tests",
+    "start": "gulp",
     "prepublish": "gulp build"
   },
   "keywords": [
@@ -20,10 +21,10 @@
   "author": "Ivan Rubinson",
   "license": "MIT",
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.1",
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.6.1",
-    "gulp-uglify": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
     "mocha": "^6.1.4"
   },
   "repository": {

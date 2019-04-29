@@ -7,7 +7,7 @@ gulp.task('build', function() {
     console.log("Creating il-bank-account-validator.js");
     console.log("Use it in browsers");
 
-    gulp.src('index.js')
+    return gulp.src('index.js')
     .pipe(browserify({standalone: 'bankAccountValidation'}))
     .pipe(concat('il-bank-account-validator.js'))
     .pipe(gulp.dest('build'))
@@ -17,7 +17,7 @@ gulp.task('build', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('index.js', ['build']);
+    gulp.watch('index.js', gulp.series['build']);
 });
 
-gulp.task('default', ['watch', 'build']);
+gulp.task('default', gulp.series('watch', 'build'));
