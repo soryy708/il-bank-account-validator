@@ -298,5 +298,65 @@
         "bankNumber": "46",
         "branchNumber": "111",
         "accountNumber": "000032018"
+    },
+    {
+        "bankNumber": "14",
+        "branchNumber": "571",
+        "accountNumber": "041116"
+    },
+    {
+        "bankNumber": "14",
+        "branchNumber": "385",
+        "accountNumber": "041111"
+    },
+    {
+        "bankNumber": "14",
+        "branchNumber": "384",
+        "accountNumber": "041118"
+    },
+    {
+        "bankNumber": "14",
+        "branchNumber": "365",
+        "accountNumber": "041116"
+    },
+    {
+        "bankNumber": "14",
+        "branchNumber": "347",
+        "accountNumber": "041118"
+    },
+    {
+        "bankNumber": "14",
+        "branchNumber": "363",
+        "accountNumber": "041119"
+    },
+    {
+        "bankNumber": "14",
+        "branchNumber": "362",
+        "accountNumber": "041115"
+    },
+    {
+        "bankNumber": "14",
+        "branchNumber": "361",
+        "accountNumber": "041111"
+    },
+    {
+        "bankNumber": "14",
+        "branchNumber": "363",
+        "accountNumber": "041102"
+    },
+    {
+        "bankNumber": "14",
+        "branchNumber": "362",
+        "accountNumber": "041117"
+    },
+    {
+        "bankNumber": "14",
+        "branchNumber": "361",
+        "accountNumber": "041113"
+    },
+    {
+        "bankNumber": "14",
+        "branchNumber": "000",
+        "accountNumber": "000032018"
     }
 ]
