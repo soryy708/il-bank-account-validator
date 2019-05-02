@@ -214,15 +214,15 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
             return true; // wtf?
 
         case(22): // Citibank NA
-            sum += accountNumberDigits[0] * 2;
-            sum += accountNumberDigits[1] * 3;
-            sum += accountNumberDigits[2] * 4;
-            sum += accountNumberDigits[3] * 5;
-            sum += accountNumberDigits[4] * 6;
-            sum += accountNumberDigits[5] * 7;
-            sum += accountNumberDigits[6] * 2;
-            sum += accountNumberDigits[7] * 3;
-            return (11 - sum % 11) === accountNumberDigits[8];
+            sum += accountNumberDigits[1] * 2;
+            sum += accountNumberDigits[2] * 3;
+            sum += accountNumberDigits[3] * 4;
+            sum += accountNumberDigits[4] * 5;
+            sum += accountNumberDigits[5] * 6;
+            sum += accountNumberDigits[6] * 7;
+            sum += accountNumberDigits[7] * 2;
+            sum += accountNumberDigits[8] * 3;
+            return (11 - sum % 11) === accountNumberDigits[0];
 
         case(14): // Otsar Ahayal
         case(46): // Masad
