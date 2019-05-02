@@ -90,45 +90,30 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
 
     // Account number validation
     var sum = 0;
+    var remainder = 0;
     switch(bankNumber) {
         case(SUPPORTED_BANKS.LEUMI):
         case(SUPPORTED_BANKS.IGUD):
         case(SUPPORTED_BANKS.ARAVEI_ISRAELI):
-            sum += accountNumberDigits[0];
-            sum += accountNumberDigits[1] * 10;
-            sum += accountNumberDigits[2] * 2;
-            sum += accountNumberDigits[3] * 3;
-            sum += accountNumberDigits[4] * 4;
-            sum += accountNumberDigits[5] * 5;
-            sum += accountNumberDigits[6] * 6;
-            sum += accountNumberDigits[7] * 7;
-            sum += branchNumberDigits[0] * 8;
-            sum += branchNumberDigits[1] * 9;
-            sum += branchNumberDigits[2] * 10;
-            sum %= 100;
-            return arrIncludes([90, 72, 70, 60, 20], sum);
+            sum =  scalarProduct(accountNumberDigits.slice(0, 8), [1, 10, 2, 3, 4, 5, 6, 7]);
+            sum += scalarProduct(branchNumberDigits.slice(0, 4), [8, 9, 10]);
+            remainder = sum % 100;
+            return arrIncludes([90, 72, 70, 60, 20], remainder);
 
-        case(SUPPORTED_BANKS.MIZRAHI_TEFAHOT):
         case(SUPPORTED_BANKS.YAHAV):
+        case(SUPPORTED_BANKS.MIZRAHI_TEFAHOT):
         case(SUPPORTED_BANKS.HAPOALIM):
-            sum += accountNumberDigits[0] * 1;
-            sum += accountNumberDigits[1] * 2;
-            sum += accountNumberDigits[2] * 3;
-            sum += accountNumberDigits[3] * 4;
-            sum += accountNumberDigits[4] * 5;
-            sum += accountNumberDigits[5] * 6;
-            sum += branchNumberDigits[0] * 7;
-            sum += branchNumberDigits[1] * 8;
-            sum += branchNumberDigits[2] * 9;
-            sum %= 11;
-            if(bankNumber === SUPPORTED_BANKS.YAHAV) {
-                return arrIncludes([0, 2], sum);
-            }
-            if(bankNumber === SUPPORTED_BANKS.HAPOALIM) {
-                return arrIncludes([0, 2, 4, 6], sum);
-            }
-            if(bankNumber === SUPPORTED_BANKS.MIZRAHI_TEFAHOT) {
-                return arrIncludes([0, 2, 4], sum);
+            sum =  scalarProduct(accountNumberDigits.slice(0, 6), [1, 2, 3, 4, 5, 6]);
+            sum += scalarProduct(branchNumberDigits.slice(0, 4), [7, 8, 9]);
+            remainder = sum % 11;
+
+            switch (bankNumber) {
+                case (SUPPORTED_BANKS.YAHAV):
+                    return arrIncludes([0, 2], remainder);
+                case (SUPPORTED_BANKS.MIZRAHI_TEFAHOT):
+                    return arrIncludes([0, 2, 4], remainder);
+                case (SUPPORTED_BANKS.HAPOALIM):
+                    return arrIncludes([0, 2, 4, 6], remainder);
             }
             return false;
 
@@ -136,149 +121,103 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
         case(SUPPORTED_BANKS.MERCANTILE):
         case(SUPPORTED_BANKS.BEINLEUMI):
         case(SUPPORTED_BANKS.POALEI_AGUDAT_ISRAEL):
-            sum += accountNumberDigits[0] * 1;
-            sum += accountNumberDigits[1] * 2;
-            sum += accountNumberDigits[2] * 3;
-            sum += accountNumberDigits[3] * 4;
-            sum += accountNumberDigits[4] * 5;
-            sum += accountNumberDigits[5] * 6;
-            sum += accountNumberDigits[6] * 7;
-            sum += accountNumberDigits[7] * 8;
-            sum += accountNumberDigits[8] * 9;
-            sum %= 11;
+            sum = scalarProduct(accountNumberDigits.slice(0, 9), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+            remainder = sum % 11;
 
-            if(bankNumber === SUPPORTED_BANKS.DISCOUNT || bankNumber === SUPPORTED_BANKS.MERCANTILE) {
-                return arrIncludes([0, 2, 4], sum);
-            }
-            if(bankNumber === SUPPORTED_BANKS.BEINLEUMI || bankNumber === SUPPORTED_BANKS.POALEI_AGUDAT_ISRAEL) {
-                if(arrIncludes([0, 6], sum)) {
-                    return true;
-                } else {
-                    sum = 0;
-                    sum += accountNumberDigits[0] * 1;
-                    sum += accountNumberDigits[1] * 2;
-                    sum += accountNumberDigits[2] * 3;
-                    sum += accountNumberDigits[3] * 4;
-                    sum += accountNumberDigits[4] * 5;
-                    sum += accountNumberDigits[5] * 6;
-                    sum %= 11;
-                    return arrIncludes([0, 6], sum);
-                }
+            switch (bankNumber) {
+                case(SUPPORTED_BANKS.DISCOUNT):
+                case(SUPPORTED_BANKS.MERCANTILE):
+                    return arrIncludes([0, 2, 4], remainder);
+                
+                case(SUPPORTED_BANKS.BEINLEUMI):
+                case(SUPPORTED_BANKS.POALEI_AGUDAT_ISRAEL):
+                    if(arrIncludes([0, 6], remainder)) {
+                        return true;
+
+                    } else {
+                        sum = scalarProduct(accountNumberDigits.slice(0, 6), [1, 2, 3, 4, 5, 6]);
+                        remainder = sum % 11;
+                        return arrIncludes([0, 6], remainder);
+                    }
             }
             return false;
 
         case(SUPPORTED_BANKS.POST):
-            sum += accountNumberDigits[0] * 1;
-            sum += accountNumberDigits[1] * 2;
-            sum += accountNumberDigits[2] * 3;
-            sum += accountNumberDigits[3] * 4;
-            sum += accountNumberDigits[4] * 5;
-            sum += accountNumberDigits[5] * 6;
-            sum += accountNumberDigits[6] * 7;
-            sum += accountNumberDigits[7] * 8;
-            sum += accountNumberDigits[8] * 9;
-            sum %= 10;
-            return sum === 0;
+            sum = scalarProduct(accountNumberDigits.slice(0, 9), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+            remainder = sum % 10;
+            return remainder === 0;
 
         case(54): // Jerusalem
             return true; // wtf?
 
         case(SUPPORTED_BANKS.CITIBANK):
-            sum += accountNumberDigits[1] * 2;
-            sum += accountNumberDigits[2] * 3;
-            sum += accountNumberDigits[3] * 4;
-            sum += accountNumberDigits[4] * 5;
-            sum += accountNumberDigits[5] * 6;
-            sum += accountNumberDigits[6] * 7;
-            sum += accountNumberDigits[7] * 2;
-            sum += accountNumberDigits[8] * 3;
+            sum = scalarProduct(accountNumberDigits.slice(1, 9), [2, 3, 4, 5, 6, 7, 2, 3]);
             return (11 - sum % 11) === accountNumberDigits[0];
 
         case(SUPPORTED_BANKS.OTSAR_AHAYAL):
         case(SUPPORTED_BANKS.MASAD):
-            sum += accountNumberDigits[0] * 1;
-            sum += accountNumberDigits[1] * 2;
-            sum += accountNumberDigits[2] * 3;
-            sum += accountNumberDigits[3] * 4;
-            sum += accountNumberDigits[4] * 5;
-            sum += accountNumberDigits[5] * 6;
-            sum += branchNumberDigits[0] * 7;
-            sum += branchNumberDigits[1] * 8;
-            sum += branchNumberDigits[2] * 9;
-            sum %= 11;
+            sum =  scalarProduct(accountNumberDigits.slice(0, 6), [1, 2, 3, 4, 5, 6]);
+            sum += scalarProduct(branchNumberDigits.slice(0, 4), [7, 8, 9]);
+            remainder = sum % 11;
 
-            if(sum === 0) {
+            if(remainder === 0) {
                 return true;
             }
 
             if(bankNumber === SUPPORTED_BANKS.MASAD) {
-                if (sum === 2 && arrIncludes([154, 166, 178, 181, 183, 191, 192, 503, 505, 507, 515, 516, 527, 539], branchNumber)) {
+                if (remainder === 2 && arrIncludes([154, 166, 178, 181, 183, 191, 192, 503, 505, 507, 515, 516, 527, 539], branchNumber)) {
                     return true;
                 }
 
-                sum = 0;
-                sum += accountNumberDigits[0] * 1;
-                sum += accountNumberDigits[1] * 2;
-                sum += accountNumberDigits[2] * 3;
-                sum += accountNumberDigits[3] * 4;
-                sum += accountNumberDigits[4] * 5;
-                sum += accountNumberDigits[5] * 6;
-                sum += accountNumberDigits[6] * 7;
-                sum += accountNumberDigits[7] * 8;
-                sum += accountNumberDigits[8] * 9;
-                sum %= 11;
+                sum = scalarProduct(accountNumberDigits.slice(0, 9), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+                remainder = sum % 11;
                 
-                if(sum === 0) {
+                if(remainder === 0) {
                     return true;
 
                 } else {
-                    sum = 0;
-                    sum += accountNumberDigits[0] * 1;
-                    sum += accountNumberDigits[1] * 2;
-                    sum += accountNumberDigits[2] * 3;
-                    sum += accountNumberDigits[3] * 4;
-                    sum += accountNumberDigits[4] * 5;
-                    sum += accountNumberDigits[5] * 6;
-                    sum %= 11;
-                    return sum === 0;
+                    sum = scalarProduct(accountNumberDigits.slice(0, 6), [1, 2, 3, 4, 5, 6]);
+                    remainder = sum % 11;
+                    return remainder === 0;
                 }
             }
             if(bankNumber === SUPPORTED_BANKS.OTSAR_AHAYAL) {
-                if (arrIncludes([0, 2], sum) && arrIncludes([385, 384, 365, 347, 363, 362, 361], branchNumber)) {
+                if (arrIncludes([0, 2], remainder) && arrIncludes([385, 384, 365, 347, 363, 362, 361], branchNumber)) {
                     return true;
-                } else if(sum === 4 && arrIncludes([363, 362, 361], branchNumber)) {
+
+                } else if(remainder === 4 && arrIncludes([363, 362, 361], branchNumber)) {
                     return true;
+
                 } else {
-                    sum = 0;
-                    sum += accountNumberDigits[0] * 1;
-                    sum += accountNumberDigits[1] * 2;
-                    sum += accountNumberDigits[2] * 3;
-                    sum += accountNumberDigits[3] * 4;
-                    sum += accountNumberDigits[4] * 5;
-                    sum += accountNumberDigits[5] * 6;
-                    sum += accountNumberDigits[6] * 7;
-                    sum += accountNumberDigits[7] * 8;
-                    sum += accountNumberDigits[8] * 9;
-                    sum %= 11;
-                    if(sum === 0) {
+                    sum = scalarProduct(accountNumberDigits.slice(0, 9), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+                    remainder = sum % 11;
+                    if(remainder === 0) {
                         return true;
                     } else {
-                        sum = 0;
-                        sum += accountNumberDigits[0] * 1;
-                        sum += accountNumberDigits[1] * 2;
-                        sum += accountNumberDigits[2] * 3;
-                        sum += accountNumberDigits[3] * 4;
-                        sum += accountNumberDigits[4] * 5;
-                        sum += accountNumberDigits[5] * 6;
-                        sum %= 11;
-                        return sum === 0;
+                        sum = scalarProduct(accountNumberDigits.slice(0, 6), [1, 2, 3, 4, 5, 6]);
+                        remainder = sum % 11;
+                        return remainder === 0;
                     }
                 }
             }
-
+            return false;
     }
 
     return false;
+
+    /**
+     * Calculates scalar product of two arrays of the same length.
+     * https://en.wikipedia.org/wiki/Dot_product
+     * @param {Array} arr1 
+     * @param {Array} arr2 
+     */
+    function scalarProduct(arr1, arr2) {
+        var product = 0;
+        for (var i = 0; i < arr1.length && i < arr2.length; ++i) {
+            product += arr1[i] * arr2[i];
+        }
+        return product;
+    }
 
     /**
      * Check if `val` is an element of `arr` using strict compare by reference
