@@ -218,5 +218,85 @@
         "bankNumber": "22",
         "branchNumber": "000",
         "accountNumber": "700241017"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "571",
+        "accountNumber": "041116"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "154",
+        "accountNumber": "041116"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "166",
+        "accountNumber": "041116"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "178",
+        "accountNumber": "041116"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "181",
+        "accountNumber": "041113"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "183",
+        "accountNumber": "041100"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "191",
+        "accountNumber": "041116"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "192",
+        "accountNumber": "041128"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "503",
+        "accountNumber": "041116"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "505",
+        "accountNumber": "041113"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "507",
+        "accountNumber": "041129"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "515",
+        "accountNumber": "041116"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "516",
+        "accountNumber": "041118"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "527",
+        "accountNumber": "041116"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "539",
+        "accountNumber": "041116"
+    },
+    {
+        "bankNumber": "46",
+        "branchNumber": "111",
+        "accountNumber": "000032018"
     }
 ]
