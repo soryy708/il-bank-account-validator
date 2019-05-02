@@ -183,5 +183,40 @@
         "bankNumber": "20",
         "branchNumber": "006",
         "accountNumber": "160771"
+    },
+    {
+        "bankNumber": "31",
+        "branchNumber": "000",
+        "accountNumber": "000032018"
+    },
+    {
+        "bankNumber": "31",
+        "branchNumber": "000",
+        "accountNumber": "000032048"
+    },
+    {
+        "bankNumber": "52",
+        "branchNumber": "000",
+        "accountNumber": "000032018"
+    },
+    {
+        "bankNumber": "52",
+        "branchNumber": "000",
+        "accountNumber": "000032048"
+    },
+    {
+        "bankNumber": "9",
+        "branchNumber": "000",
+        "accountNumber": "059121900"
+    },
+    {
+        "bankNumber": "9",
+        "branchNumber": "000",
+        "accountNumber": "059121950"
+    },
+    {
+        "bankNumber": "22",
+        "branchNumber": "000",
+        "accountNumber": "700241017"
     }
 ]
