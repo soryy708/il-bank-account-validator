@@ -215,15 +215,15 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
             return true; // wtf?
 
         case(22): // Citibank NA
-            sum += accountNumberDigits[0] * 2;
-            sum += accountNumberDigits[1] * 3;
-            sum += accountNumberDigits[2] * 4;
-            sum += accountNumberDigits[3] * 5;
-            sum += accountNumberDigits[4] * 6;
-            sum += accountNumberDigits[5] * 7;
-            sum += accountNumberDigits[6] * 2;
-            sum += accountNumberDigits[7] * 3;
-            return (11 - sum % 11) === accountNumberDigits[8];
+            sum += accountNumberDigits[1] * 2;
+            sum += accountNumberDigits[2] * 3;
+            sum += accountNumberDigits[3] * 4;
+            sum += accountNumberDigits[4] * 5;
+            sum += accountNumberDigits[5] * 6;
+            sum += accountNumberDigits[6] * 7;
+            sum += accountNumberDigits[7] * 2;
+            sum += accountNumberDigits[8] * 3;
+            return (11 - sum % 11) === accountNumberDigits[0];
 
         case(14): // Otsar Ahayal
         case(46): // Masad
@@ -243,9 +243,25 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
             }
 
             if(bankNumber === 46) { // Masad
-                if(sum === 2) {
-                    return branchNumber === 154 || branchNumber === 166 || branchNumber === 178 || branchNumber === 181 || branchNumber === 183 || branchNumber === 191 || branchNumber === 192 || branchNumber === 503 || branchNumber === 505 || branchNumber === 507 || branchNumber === 515 || branchNumber === 516 || branchNumber === 527 || branchNumber === 539
-    
+                if(sum === 2 && (branchNumber === 154 || branchNumber === 166 || branchNumber === 178 || branchNumber === 181 || branchNumber === 183 || branchNumber === 191 || branchNumber === 192 || branchNumber === 503 || branchNumber === 505 || branchNumber === 507 || branchNumber === 515 || branchNumber === 516 || branchNumber === 527 || branchNumber === 539)) {
+                    return true;
+                }
+
+                sum = 0;
+                sum += accountNumberDigits[0] * 1;
+                sum += accountNumberDigits[1] * 2;
+                sum += accountNumberDigits[2] * 3;
+                sum += accountNumberDigits[3] * 4;
+                sum += accountNumberDigits[4] * 5;
+                sum += accountNumberDigits[5] * 6;
+                sum += accountNumberDigits[6] * 7;
+                sum += accountNumberDigits[7] * 8;
+                sum += accountNumberDigits[8] * 9;
+                sum %= 11;
+                
+                if(sum === 0) {
+                    return true;
+
                 } else {
                     sum = 0;
                     sum += accountNumberDigits[0] * 1;
@@ -254,24 +270,8 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
                     sum += accountNumberDigits[3] * 4;
                     sum += accountNumberDigits[4] * 5;
                     sum += accountNumberDigits[5] * 6;
-                    sum += accountNumberDigits[6] * 7;
-                    sum += accountNumberDigits[7] * 8;
-                    sum += accountNumberDigits[8] * 9;
                     sum %= 11;
-                    if(sum === 0) {
-                        return true;
-    
-                    } else {
-                        sum = 0;
-                        sum += accountNumberDigits[0] * 1;
-                        sum += accountNumberDigits[1] * 2;
-                        sum += accountNumberDigits[2] * 3;
-                        sum += accountNumberDigits[3] * 4;
-                        sum += accountNumberDigits[4] * 5;
-                        sum += accountNumberDigits[5] * 6;
-                        sum %= 11;
-                        return sum === 0;
-                    }
+                    return sum === 0;
                 }
             }
             if(bankNumber === 14) { // Otsar Ahayal
