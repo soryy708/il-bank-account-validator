@@ -106,7 +106,7 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
             sum += branchNumberDigits[1] * 9;
             sum += branchNumberDigits[2] * 10;
             sum %= 100;
-            return sum === 90 || sum === 72 || sum === 70 || sum === 60 || sum === 20;
+            return arrIncludes([90, 72, 70, 60, 20], sum);
 
         case(SUPPORTED_BANKS.MIZRAHI_TEFAHOT):
         case(SUPPORTED_BANKS.YAHAV):
@@ -122,13 +122,13 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
             sum += branchNumberDigits[2] * 9;
             sum %= 11;
             if(bankNumber === SUPPORTED_BANKS.YAHAV) {
-                return sum === 0 || sum === 2;
+                return arrIncludes([0, 2], sum);
             }
             if(bankNumber === SUPPORTED_BANKS.HAPOALIM) {
-                return sum === 0 || sum === 2 || sum === 4 || sum === 6;
+                return arrIncludes([0, 2, 4, 6], sum);
             }
             if(bankNumber === SUPPORTED_BANKS.MIZRAHI_TEFAHOT) {
-                return sum === 0 || sum === 2 || sum === 4;
+                return arrIncludes([0, 2, 4], sum);
             }
             return false;
 
@@ -148,10 +148,10 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
             sum %= 11;
 
             if(bankNumber === SUPPORTED_BANKS.DISCOUNT || bankNumber === SUPPORTED_BANKS.MERCANTILE) {
-                return sum === 0 || sum === 2 || sum === 4;
+                return arrIncludes([0, 2, 4], sum);
             }
             if(bankNumber === SUPPORTED_BANKS.BEINLEUMI || bankNumber === SUPPORTED_BANKS.POALEI_AGUDAT_ISRAEL) {
-                if(sum === 0 || sum === 6) {
+                if(arrIncludes([0, 6], sum)) {
                     return true;
                 } else {
                     sum = 0;
@@ -162,7 +162,7 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
                     sum += accountNumberDigits[4] * 5;
                     sum += accountNumberDigits[5] * 6;
                     sum %= 11;
-                    return sum === 0 || sum === 6;
+                    return arrIncludes([0, 6], sum);
                 }
             }
             return false;
@@ -212,7 +212,7 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
             }
 
             if(bankNumber === SUPPORTED_BANKS.MASAD) {
-                if(sum === 2 && (branchNumber === 154 || branchNumber === 166 || branchNumber === 178 || branchNumber === 181 || branchNumber === 183 || branchNumber === 191 || branchNumber === 192 || branchNumber === 503 || branchNumber === 505 || branchNumber === 507 || branchNumber === 515 || branchNumber === 516 || branchNumber === 527 || branchNumber === 539)) {
+                if (sum === 2 && arrIncludes([154, 166, 178, 181, 183, 191, 192, 503, 505, 507, 515, 516, 527, 539], branchNumber)) {
                     return true;
                 }
 
@@ -244,9 +244,9 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
                 }
             }
             if(bankNumber === SUPPORTED_BANKS.OTSAR_AHAYAL) {
-                if((sum === 0 || sum === 2) && (branchNumber === 385 || branchNumber === 384 || branchNumber === 365 || branchNumber === 347 || branchNumber === 363 || branchNumber === 362 || branchNumber === 361)) {
+                if (arrIncludes([0, 2], sum) && arrIncludes([385, 384, 365, 347, 363, 362, 361], branchNumber)) {
                     return true;
-                } else if(sum === 4 && (branchNumber === 363 || branchNumber === 362 || branchNumber === 361)) {
+                } else if(sum === 4 && arrIncludes([363, 362, 361], branchNumber)) {
                     return true;
                 } else {
                     sum = 0;
@@ -279,6 +279,23 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
     }
 
     return false;
+
+    /**
+     * Check if `val` is an element of `arr` using strict compare by reference
+     * A bit like arr.includes(val), but made in-house for legacy browser support
+     * @param {Array} arr 
+     * @param {*} val 
+     */
+    function arrIncludes(arr, val) {
+        if (arr) {
+            for (var i = 0; i < arr.length; ++i) {
+                if (arr[i] === val) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     function numberDigitsToArr(num, length) {
         var digitsArray = [];
