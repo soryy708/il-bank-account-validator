@@ -1,6 +1,11 @@
 [
     {
         "bankNumber": "10",
+        "branchNumber": "607",
+        "accountNumber": "11710022"
+    },
+    {
+        "bankNumber": "10",
         "branchNumber": "111",
         "accountNumber": "11111116"
     },
@@ -26,6 +31,11 @@
     },
     {
         "bankNumber": "13",
+        "branchNumber": "607",
+        "accountNumber": "11710022"
+    },
+    {
+        "bankNumber": "13",
         "branchNumber": "111",
         "accountNumber": "11111116"
     },
@@ -51,6 +61,11 @@
     },
     {
         "bankNumber": "34",
+        "branchNumber": "607",
+        "accountNumber": "11710022"
+    },
+    {
+        "bankNumber": "34",
         "branchNumber": "111",
         "accountNumber": "11111116"
     },
@@ -73,5 +88,100 @@
         "bankNumber": "34",
         "branchNumber": "000",
         "accountNumber": "00000090"
+    },
+    {
+        "bankNumber": "12",
+        "branchNumber": "571",
+        "accountNumber": "041116"
+    },
+    {
+        "bankNumber": "12",
+        "branchNumber": "000",
+        "accountNumber": "000051"
+    },
+    {
+        "bankNumber": "12",
+        "branchNumber": "000",
+        "accountNumber": "000053"
+    },
+    {
+        "bankNumber": "12",
+        "branchNumber": "000",
+        "accountNumber": "000055"
+    },
+    {
+        "bankNumber": "12",
+        "branchNumber": "000",
+        "accountNumber": "000057"
+    },
+    {
+        "bankNumber": "4",
+        "branchNumber": "571",
+        "accountNumber": "041116"
+    },
+    {
+        "bankNumber": "4",
+        "branchNumber": "571",
+        "accountNumber": "041118"
+    },
+    {
+        "bankNumber": "11",
+        "branchNumber": "000",
+        "accountNumber": "000032018"
+    },
+    {
+        "bankNumber": "11",
+        "branchNumber": "000",
+        "accountNumber": "000032011"
+    },
+    {
+        "bankNumber": "11",
+        "branchNumber": "000",
+        "accountNumber": "000031005"
+    },
+    {
+        "bankNumber": "17",
+        "branchNumber": "000",
+        "accountNumber": "000032018"
+    },
+    {
+        "bankNumber": "17",
+        "branchNumber": "000",
+        "accountNumber": "000032011"
+    },
+    {
+        "bankNumber": "17",
+        "branchNumber": "000",
+        "accountNumber": "000031005"
+    },
+    {
+        "bankNumber": "20",
+        "branchNumber": "406",
+        "accountNumber": "160778"
+    },
+    {
+        "bankNumber": "20",
+        "branchNumber": "406",
+        "accountNumber": "160788"
+    },
+    {
+        "bankNumber": "20",
+        "branchNumber": "406",
+        "accountNumber": "160771"
+    },
+    {
+        "bankNumber": "20",
+        "branchNumber": "006",
+        "accountNumber": "160778"
+    },
+    {
+        "bankNumber": "20",
+        "branchNumber": "006",
+        "accountNumber": "160788"
+    },
+    {
+        "bankNumber": "20",
+        "branchNumber": "006",
+        "accountNumber": "160771"
     }
 ]
