@@ -18,6 +18,11 @@
     "snif",
     "heshbon"
   ],
+  "files": [
+    "index.js",
+    "build/il-bank-account-validator.js",
+    "build/il-bank-account-validator.min.js"
+  ],
   "author": "Ivan Rubinson",
   "license": "MIT",
   "devDependencies": {
