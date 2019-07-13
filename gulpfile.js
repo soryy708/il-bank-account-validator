@@ -27,4 +27,4 @@ gulp.task('watch', function() {
     gulp.watch('index.js', gulp.series['build']);
 });
 
-gulp.task('default', gulp.series('watch', 'build'));
+gulp.task('default', gulp.series('build', 'watch'));
