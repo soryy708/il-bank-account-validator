@@ -40,25 +40,25 @@
  * 99 - Bank Israel
  */
 'use strict';
-
-module.exports = function(bankNumber, branchNumber, accountNumber) {
+//
+module.exports = function (bankNumber, branchNumber, accountNumber) {
     // Input validation:
-    if(bankNumber.constructor === String) {
+    if (bankNumber.constructor === String) {
         bankNumber = Number(bankNumber);
     }
-    if(branchNumber.constructor === String) {
+    if (branchNumber.constructor === String) {
         branchNumber = Number(branchNumber);
     }
-    if(accountNumber.constructor === String) {
+    if (accountNumber.constructor === String) {
         accountNumber = Number(accountNumber);
     }
-    if(!isNonNegativeInteger(bankNumber)) {
+    if (!isNonNegativeInteger(bankNumber)) {
         return false;
     }
-    if(!isNonNegativeInteger(branchNumber)) {
+    if (!isNonNegativeInteger(branchNumber)) {
         return false;
     }
-    if(!isNonNegativeInteger(accountNumber)) {
+    if (!isNonNegativeInteger(accountNumber)) {
         return false;
     }
 
@@ -79,31 +79,31 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
         POALEI_AGUDAT_ISRAEL: 52 // merged with Beinleumi
     }
 
-    if(bankNumber === SUPPORTED_BANKS.MIZRAHI_TEFAHOT) {
-        if(branchNumber > 400) {
+    if (bankNumber === SUPPORTED_BANKS.MIZRAHI_TEFAHOT) {
+        if (branchNumber > 400) {
             branchNumber -= 400;
         }
     }
 
     var accountNumberDigits = numberDigitsToArr(accountNumber, 9);
-    var branchNumberDigits  = numberDigitsToArr(branchNumber, 3);
+    var branchNumberDigits = numberDigitsToArr(branchNumber, 3);
 
     // Account number validation
     var sum = 0;
     var remainder = 0;
-    switch(bankNumber) {
-        case(SUPPORTED_BANKS.LEUMI):
-        case(SUPPORTED_BANKS.IGUD):
-        case(SUPPORTED_BANKS.ARAVEI_ISRAELI):
-            sum =  scalarProduct(accountNumberDigits.slice(0, 8), [1, 10, 2, 3, 4, 5, 6, 7]);
+    switch (bankNumber) {
+        case (SUPPORTED_BANKS.LEUMI):
+        case (SUPPORTED_BANKS.IGUD):
+        case (SUPPORTED_BANKS.ARAVEI_ISRAELI):
+            sum = scalarProduct(accountNumberDigits.slice(0, 8), [1, 10, 2, 3, 4, 5, 6, 7]);
             sum += scalarProduct(branchNumberDigits.slice(0, 4), [8, 9, 10]);
             remainder = sum % 100;
             return arrIncludes([90, 72, 70, 60, 20], remainder);
 
-        case(SUPPORTED_BANKS.YAHAV):
-        case(SUPPORTED_BANKS.MIZRAHI_TEFAHOT):
-        case(SUPPORTED_BANKS.HAPOALIM):
-            sum =  scalarProduct(accountNumberDigits.slice(0, 6), [1, 2, 3, 4, 5, 6]);
+        case (SUPPORTED_BANKS.YAHAV):
+        case (SUPPORTED_BANKS.MIZRAHI_TEFAHOT):
+        case (SUPPORTED_BANKS.HAPOALIM):
+            sum = scalarProduct(accountNumberDigits.slice(0, 6), [1, 2, 3, 4, 5, 6]);
             sum += scalarProduct(branchNumberDigits.slice(0, 4), [7, 8, 9]);
             remainder = sum % 11;
 
@@ -117,21 +117,21 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
             }
             return false;
 
-        case(SUPPORTED_BANKS.DISCOUNT):
-        case(SUPPORTED_BANKS.MERCANTILE):
-        case(SUPPORTED_BANKS.BEINLEUMI):
-        case(SUPPORTED_BANKS.POALEI_AGUDAT_ISRAEL):
+        case (SUPPORTED_BANKS.DISCOUNT):
+        case (SUPPORTED_BANKS.MERCANTILE):
+        case (SUPPORTED_BANKS.BEINLEUMI):
+        case (SUPPORTED_BANKS.POALEI_AGUDAT_ISRAEL):
             sum = scalarProduct(accountNumberDigits.slice(0, 9), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
             remainder = sum % 11;
 
             switch (bankNumber) {
-                case(SUPPORTED_BANKS.DISCOUNT):
-                case(SUPPORTED_BANKS.MERCANTILE):
+                case (SUPPORTED_BANKS.DISCOUNT):
+                case (SUPPORTED_BANKS.MERCANTILE):
                     return arrIncludes([0, 2, 4], remainder);
-                
-                case(SUPPORTED_BANKS.BEINLEUMI):
-                case(SUPPORTED_BANKS.POALEI_AGUDAT_ISRAEL):
-                    if(arrIncludes([0, 6], remainder)) {
+
+                case (SUPPORTED_BANKS.BEINLEUMI):
+                case (SUPPORTED_BANKS.POALEI_AGUDAT_ISRAEL):
+                    if (arrIncludes([0, 6], remainder)) {
                         return true;
 
                     } else {
@@ -142,37 +142,37 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
             }
             return false;
 
-        case(SUPPORTED_BANKS.POST):
+        case (SUPPORTED_BANKS.POST):
             sum = scalarProduct(accountNumberDigits.slice(0, 9), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
             remainder = sum % 10;
             return remainder === 0;
 
-        case(54): // Jerusalem
+        case (54): // Jerusalem
             return true; // wtf?
 
-        case(SUPPORTED_BANKS.CITIBANK):
+        case (SUPPORTED_BANKS.CITIBANK):
             sum = scalarProduct(accountNumberDigits.slice(1, 9), [2, 3, 4, 5, 6, 7, 2, 3]);
             return (11 - sum % 11) === accountNumberDigits[0];
 
-        case(SUPPORTED_BANKS.OTSAR_AHAYAL):
-        case(SUPPORTED_BANKS.MASAD):
-            sum =  scalarProduct(accountNumberDigits.slice(0, 6), [1, 2, 3, 4, 5, 6]);
+        case (SUPPORTED_BANKS.OTSAR_AHAYAL):
+        case (SUPPORTED_BANKS.MASAD):
+            sum = scalarProduct(accountNumberDigits.slice(0, 6), [1, 2, 3, 4, 5, 6]);
             sum += scalarProduct(branchNumberDigits.slice(0, 4), [7, 8, 9]);
             remainder = sum % 11;
 
-            if(remainder === 0) {
+            if (remainder === 0) {
                 return true;
             }
 
-            if(bankNumber === SUPPORTED_BANKS.MASAD) {
+            if (bankNumber === SUPPORTED_BANKS.MASAD) {
                 if (remainder === 2 && arrIncludes([154, 166, 178, 181, 183, 191, 192, 503, 505, 507, 515, 516, 527, 539], branchNumber)) {
                     return true;
                 }
 
                 sum = scalarProduct(accountNumberDigits.slice(0, 9), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
                 remainder = sum % 11;
-                
-                if(remainder === 0) {
+
+                if (remainder === 0) {
                     return true;
 
                 } else {
@@ -181,17 +181,17 @@ module.exports = function(bankNumber, branchNumber, accountNumber) {
                     return remainder === 0;
                 }
             }
-            if(bankNumber === SUPPORTED_BANKS.OTSAR_AHAYAL) {
+            if (bankNumber === SUPPORTED_BANKS.OTSAR_AHAYAL) {
                 if (arrIncludes([0, 2], remainder) && arrIncludes([385, 384, 365, 347, 363, 362, 361], branchNumber)) {
                     return true;
 
-                } else if(remainder === 4 && arrIncludes([363, 362, 361], branchNumber)) {
+                } else if (remainder === 4 && arrIncludes([363, 362, 361], branchNumber)) {
                     return true;
 
                 } else {
                     sum = scalarProduct(accountNumberDigits.slice(0, 9), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
                     remainder = sum % 11;
-                    if(remainder === 0) {
+                    if (remainder === 0) {
                         return true;
                     } else {
                         sum = scalarProduct(accountNumberDigits.slice(0, 6), [1, 2, 3, 4, 5, 6]);
