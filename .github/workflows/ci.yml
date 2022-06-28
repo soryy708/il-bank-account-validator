@@ -1,0 +1,21 @@
+name: Continuous Integration
+on: pull_request
+
+jobs:
+	CI:
+		name: Continuous Integration
+		runs-on: ubuntu-latest
+		steps:
+			- name: Checkout the branch
+			  uses: actions/checkout@v3
+
+			- name: Set up NodeJS
+			  uses: actions/setup-node@v3
+				with:
+					node-version: '16'
+
+			- name: Install dependencies
+			  run: npm i
+				
+			- name: Run tests
+		    run: npm test
