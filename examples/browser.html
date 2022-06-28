@@ -67,8 +67,9 @@
 
         <h1 id="validationResult"></h1>
 
-        <script src="../build/il-bank-account-validator.js"></script>
-        <script>
+        <script type="module">
+            import bankAccountValidation from '../index';
+
             function validateForm() {
                 var banknElem = document.getElementById('bankn');
                 var branchnElem = document.getElementById('branchn');

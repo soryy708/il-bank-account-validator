@@ -4,7 +4,7 @@ Israeli Bank Account Validator
 Israeli Bank Account Validator provides validation utilities for Israeli bank account numbers. You can use it to present appropriate UI to your user as they type.
 This is a JavaScript module.
 
-It can be used both on the front side as a browserified module, and on the back side as a NodeJS module.
+It can be used both on the front end (if browserified or imported as [JS Module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)), and on the back end as a NodeJS module.
 
 Installation
 -
@@ -37,11 +37,12 @@ if(validator(bank, branch, account)) {
 }
 ```
 
-In the browser with `<script>` tags:
+In the browser JS-Modules and `<script>` tags:
 
 ```html
-<script src="path/to/il-bank-account-validator.js"></script>
-<script>
+<script type="module">
+  import bankAccountValidation from 'il-bank-account-validator';
+
   if (bankAccountValidation(bankNumber, branchNumber, accountNumber)) {
     renderFullyValidAccountNumber();
   } else if (!accountValidation.isPotentiallyValid) {
@@ -50,4 +51,4 @@ In the browser with `<script>` tags:
 </script>
 ```
 
-The file you need is inside the 'build' folder. There's also a minified version.
+If you need to support browsers that don't support JS-Modules (like Internet Explorer, Safari iOS <10.3), you can instead use a bundler like [Webpack](https://webpack.js.org/).

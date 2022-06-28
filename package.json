@@ -4,9 +4,7 @@
   "description": "Israel Bank Account Validator for sanity checking if an account number is valid for a particular Israeli bank and branch. Can be used to present appropriate UI to your users as they type.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./tests",
-    "start": "gulp",
-    "build": "gulp build"
+    "test": "mocha ./tests"
   },
   "keywords": [
     "israel",
@@ -19,20 +17,12 @@
     "heshbon"
   ],
   "files": [
-    "index.js",
-    "build/il-bank-account-validator.js",
-    "build/il-bank-account-validator.min.js"
+    "index.js"
   ],
   "author": "Ivan Rubinson",
   "license": "MIT",
   "devDependencies": {
-    "browserify": "^16.2.3",
-    "gulp": "^4.0.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-uglify": "^3.0.2",
-    "mocha": "^6.1.4",
-    "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0"
+    "mocha": "^6.1.4"
   },
   "repository": {
     "type": "git",

@@ -5,7 +5,7 @@
 ניתן להשתמש בו כדי לעדכן את ממשק המשתמש בהתאמה לערכים שהמשתמש מקליד.
 מדובר בספריית JavaScript.
 
-ניתן להשתמש בו גם בצד הלקוח כמודול שעבר browserification, וגם בצד השרת כמודול NodeJS.
+ניתן להשתמש בו גם בצד הלקוח (כמודול שעבר browserification, או להשתמש ב [JS Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)), וגם בצד השרת כמודול NodeJS.
 
 התקנה
 -
@@ -38,11 +38,12 @@ if(validator(bank, branch, account)) {
 }
 ```
 
-בדפדפן עם תגיות `<script>`:
+בדפדפן עם JS-Modules  ותגיות `<script>`:
 
 ```html
-<script src="path/to/il-bank-account-validator.js"></script>
-<script>
+<script type="module">
+  import bankAccountValidation from 'il-bank-account-validator';
+
   if (bankAccountValidation(bankNumber, branchNumber, accountNumber)) {
     renderFullyValidAccountNumber();
   } else if (!accountValidation.isPotentiallyValid) {
@@ -51,4 +52,4 @@ if(validator(bank, branch, account)) {
 </script>
 ```
 
-הקובץ הנדרש נמצא בתקיית 'build'. יש גם גרסא שעברה מיניפיקציה.
+אם עליך לתמוך בדפדפנים שלא תומכים ב JS-Modules (כגון Internet Explorer, Safari iOS <10.3), אפשר להשתמש ב bundler כמו [Webpack](https://webpack.js.org/).
