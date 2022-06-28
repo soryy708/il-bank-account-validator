@@ -4,7 +4,7 @@
   "description": "Israel Bank Account Validator for sanity checking if an account number is valid for a particular Israeli bank and branch. Can be used to present appropriate UI to your users as they type.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./tests"
+    "test": "jest"
   },
   "keywords": [
     "israel",
@@ -22,7 +22,7 @@
   "author": "Ivan Rubinson",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "^6.1.4"
+    "jest": "^28.1.1"
   },
   "repository": {
     "type": "git",
