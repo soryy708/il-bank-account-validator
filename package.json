@@ -1,6 +1,6 @@
 {
   "name": "il-bank-account-validator",
-  "version": "1.0.7",
+  "version": "2.0.0",
   "description": "Israel Bank Account Validator for sanity checking if an account number is valid for a particular Israeli bank and branch. Can be used to present appropriate UI to your users as they type.",
   "main": "index.js",
   "scripts": {
